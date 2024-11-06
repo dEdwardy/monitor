@@ -1,0 +1,27 @@
+diff --git a/node_modules/node-apollo/lib/helper.js b/node_modules/node-apollo/lib/helper.js
+index 340c4a5..5753123 100644
+--- a/node_modules/node-apollo/lib/helper.js
++++ b/node_modules/node-apollo/lib/helper.js
+@@ -6,12 +6,17 @@ module.exports = {
+   // https://stackoverflow.com/questions/3710204/how-to-check-if-a-string-is-a-valid-json-string-in-javascript-without-using-try
+   // 先判断是否是JSON String 格式，不是则直接返回原始string
+   toJSON(str) {
+-    if (/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
+-      replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+-      replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
++    // if (/^[\],:{}\s]*$/.test(str.replace(/\\["\\\/bfnrtu]/g, '@').
++    //   replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
++    //   replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
++    //   return JSON.parse(str);
++    // } else {
++    //   return str;
++    // }
++    try {
+       return JSON.parse(str);
+-    } else {
+-      return str;
++    } catch (error) {
++      return str
+     }
+   },
+ 
